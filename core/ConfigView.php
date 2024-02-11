@@ -16,13 +16,15 @@ class ConfigView {
      */
     public function __construct(private string $namePage, private array|null|string $dados)
     {
-        var_dump($this->dados);
+        //var_dump($this->dados);
     }
 
     public function loadPageView(): void {
         $file = 'app/'.$this->namePage.'.php';
         if(file_exists($file)){
+            include 'app/sts/Views/include/header.php';
             include $file;
+            include 'app/sts/Views/include/footer.php';
         } else {
             echo "Erro: Por favor tente novamente. Caso o problema persista, entre em contato <br>
             com o administrador: ". EMAIL_ADM;
