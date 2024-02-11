@@ -8,7 +8,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Core\\": "core"
+            "Core\\": "core",
+            "App\\": "app",
+            "Sts\\": "app/sts",
+            "Controller\\": "app/sts/Controllers",
+            "Models\\": "app/sts/Models",
+            "Views\\": "app/sts/Views"
         }
     },
     "require": {}

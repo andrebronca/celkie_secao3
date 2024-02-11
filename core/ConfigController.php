@@ -13,7 +13,6 @@ class ConfigController{
 
     public function __construct()
     {
-        echo "carregando configcontroller <br>";
         //'url' é o que foi definida no .htaccess
         $filter = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
         if(!empty($filter)){
@@ -23,17 +22,21 @@ class ConfigController{
             $this->clearUrl();
 
             $this->urlArray = explode("/", $this->url);
-            var_dump($this->urlArray);
             if(isset($this->urlArray[0])){
                 $this->urlController = $this->slugController($this->urlArray[0]);  //obtendo o nome da controller
             } else {    //se não for enviado nada, acessar a página inicial
-                $this->urlController = "Home";
+                $this->urlController = $this->slugController("Home");
             }
         } else {
-            echo "Acessando a página inicial <br>";
-            $this->urlController = "Home";
+            $this->urlController = $this->slugController("Home");
         }
-        echo "Controller: {$this->urlController} <br>";
+    }
+
+    public function loadPage(): void {
+        //para carregar a controller no Windows
+        $classLoad = "Controller\\". $this->urlController;
+        $classPage = new $classLoad();
+        $classPage->index();
     }
 
     private function slugController(string $slugController): string {
