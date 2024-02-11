@@ -1,6 +1,12 @@
 <?php
 namespace Core;
 
+if(!defined('7F67D6E')){
+    //redireciona para a raiz
+    //header("Location: /celke_secao3/");
+    die("Página não encontrada!");
+}
+
 abstract class Config {
     protected function config(): void {
         //url do projeto

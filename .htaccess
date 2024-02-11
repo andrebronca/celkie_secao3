@@ -1,3 +1,4 @@
+#documentação: httpd.apache.org/docs/2.4/rewrite/flags.html
 #configurando a reescrita amigável da url
 #ativando a reescrita da url
 RewriteEngine On
@@ -18,3 +19,6 @@ RewriteCond %{REQUEST_FILENAME} !-l
 #para indicar que a url contém parametros, exemplo: (GET, &artigo=1), usa-se: 
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 #agora deve ser configurado no ConfigController: filter_input()
+
+#impedir a listagem dos arquivos dos diretórios
+Options -Indexes

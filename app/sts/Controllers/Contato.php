@@ -1,6 +1,12 @@
 <?php
 namespace Controller;
 
+if(!defined('7F67D6E')){
+    //redireciona para a raiz
+    //header("Location: /celke_secao3/");
+    die("Página não encontrada!");
+}
+
 class Contato{
     private string $pathView = "sts/Views/contato/contato";
     //configurando mais de um tipo de dados para uma variável, utiliza-se: '|'
