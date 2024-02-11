@@ -1,0 +1,20 @@
+#configurando a reescrita amigável da url
+#ativando a reescrita da url
+RewriteEngine On
+#só vai aplicar se não existir o diretório
+RewriteCond %{REQUEST_FILENAME} !-d
+#só vai aplicar se não existir o arquivo
+RewriteCond %{REQUEST_FILENAME} !-f
+#só vai aplicar se não existir um caminho simbólico
+RewriteCond %{REQUEST_FILENAME} !-l
+
+#fazendo a reescrita da url, depois da raiz do projeto: ^(.+)$
+#arquivo raiz do projeto, pega a requisição e redireciona para o arquivo (sempre fazer): index.php
+#o index.php deve receber como parâmetro a url: ?url
+#exemplo, é digitado assim: http://localhost/celke_secao3/contato/index?artigo=1
+#exemplo, ficará assim no index: index.php?url=contato/index&artigo=1
+#contato/index irá para: $1
+#?artigo=1&op=2 que é uma query url (tudo que for depois de '?') irá para o parâmetro: [QSA,L]
+#para indicar que a url contém parametros, exemplo: (GET, &artigo=1), usa-se: 
+RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+#agora deve ser configurado no ConfigController: filter_input()
