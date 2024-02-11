@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class ConfigController{
+class ConfigController extends Config{
 
     private string $url;
     private array $urlArray;
@@ -13,6 +13,7 @@ class ConfigController{
 
     public function __construct()
     {
+        $this->config();    //instanciar o método para carregar as constantes
         //'url' é o que foi definida no .htaccess
         $filter = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
         if(!empty($filter)){
@@ -25,10 +26,10 @@ class ConfigController{
             if(isset($this->urlArray[0])){
                 $this->urlController = $this->slugController($this->urlArray[0]);  //obtendo o nome da controller
             } else {    //se não for enviado nada, acessar a página inicial
-                $this->urlController = $this->slugController("Home");
+                $this->urlController = $this->slugController( CONTROLLER_ERRO );
             }
         } else {
-            $this->urlController = $this->slugController("Home");
+            $this->urlController = $this->slugController( CONTROLLER_HOME );
         }
     }
 
