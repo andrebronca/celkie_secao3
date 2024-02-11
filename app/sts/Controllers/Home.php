@@ -12,7 +12,8 @@ class Home{
     private array|string|null $data;
 
     public function index(){
-        $this->data = null;
+        $home = new \Models\StsHome();
+        $this->data = $home->index();
         $loadView = new \Core\ConfigView($this->pathView, $this->data);
         $loadView->loadPageView();
     }
